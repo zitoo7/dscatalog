@@ -40,17 +40,17 @@ public class categoryResource {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Category> insert(@RequestBody Category obj) {
-		obj = service.insert(obj);
+	public ResponseEntity<CategoryDTO> insert(@RequestBody CategoryDTO dto) {
+		dto = service.insert(dto);
 		URI uri = ServletUriComponentsBuilder
 				.fromCurrentRequest().path("/{id}")
-				.buildAndExpand(obj.getId()).toUri();
+				.buildAndExpand(dto.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
 	
 	@PutMapping(value = "/{id}")
-	public ResponseEntity<Category> update(@PathVariable Long id, @RequestBody Category obj){
-		Category entity = service.update(id, obj);
+	public ResponseEntity<Void> update(@PathVariable Long id, @RequestBody CategoryDTO dto){
+		dto = service.update(id, dto);
 		return ResponseEntity.noContent().build();
 	}
 	
